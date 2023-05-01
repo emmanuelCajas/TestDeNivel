@@ -4,24 +4,35 @@ public class VehiculoEntradaSalida {
 
 
     private Vehiculo vehiculo;
+    private String fecha;
     private String horaIngreso;
-    private String HoraSalida;
+    private String horaSalida;
     private double importe;
 
-    public VehiculoEntradaSalida(Vehiculo vehiculo, String horaIngreso) {
+    public VehiculoEntradaSalida(Vehiculo vehiculo,String fecha, String horaIngreso) {
+
         this.vehiculo = vehiculo;
+        this.fecha = fecha;
         this.horaIngreso = horaIngreso;
     }
 
-    public VehiculoEntradaSalida(Vehiculo vehiculo, String horaIngreso, String horaSalida, double importe) {
+    public VehiculoEntradaSalida(Vehiculo vehiculo, String fecha, String horaIngreso, String horaSalida, double importe) {
         this.vehiculo = vehiculo;
+        this.fecha = fecha;
         this.horaIngreso = horaIngreso;
-        HoraSalida = horaSalida;
+        this.horaSalida = horaSalida;
         this.importe = importe;
 
     }
 
 
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
 
     public Vehiculo getVehiculo() {
         return vehiculo;
@@ -40,11 +51,11 @@ public class VehiculoEntradaSalida {
     }
 
     public String getHoraSalida() {
-        return HoraSalida;
+        return horaSalida;
     }
 
     public void setHoraSalida(String horaSalida) {
-        HoraSalida = horaSalida;
+        horaSalida = horaSalida;
     }
 
     public double getImporte() {
@@ -65,12 +76,10 @@ public class VehiculoEntradaSalida {
 
     @Override
     public String toString() {
-        return  " idVehiculo=" + vehiculo.getIdVehiculo() +
-                " Matricula=" + vehiculo.getNumeroMatricula() +
-                " Propietario=" + vehiculo.getPropietario() +
-                " tipoVehiculo=" + vehiculo.getTipoVehiculo() +
-                " horaIngreso=" + horaIngreso +
-                " HoraSalida=" + HoraSalida +
-                " importe=" + importe;
+        return  "vehiculo=" + vehiculo +
+                ", fecha='" + fecha + '\'' +
+                ", horaIngreso='" + horaIngreso + '\'' +
+                ", horaSalida='" + horaSalida + '\'' +
+                ", importe=" + importe;
     }
 }

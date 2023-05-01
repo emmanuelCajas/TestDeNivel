@@ -26,6 +26,42 @@ public class HistorialDeAparcamientos {
     }
 
 
+    public ArrayList<VehiculoEntradaSalida> obtenerVehiculoPorfecha(String fecha){
+
+        ArrayList<VehiculoEntradaSalida> lista= new ArrayList<VehiculoEntradaSalida>();
+
+        for (VehiculoEntradaSalida v : this.historialAparcamientos) {
+            if(v.getFecha().equalsIgnoreCase(fecha)){
+                lista.add(v);
+            }
+        }
+        return  lista;
+    }
+
+    public ArrayList<VehiculoEntradaSalida> obtenerVehiculoPorPropietario(String nombre){
+
+        ArrayList<VehiculoEntradaSalida> lista= new ArrayList<VehiculoEntradaSalida>();
+
+        for (VehiculoEntradaSalida v : this.historialAparcamientos) {
+            if(v.getVehiculo().getPropietario().equalsIgnoreCase(nombre)){
+                lista.add(v);
+            }
+        }
+        return  lista;
+    }
+
+    public ArrayList<VehiculoEntradaSalida> obtenerVehiculoPorMatricula(String matricula){
+
+        ArrayList<VehiculoEntradaSalida> lista= new ArrayList<VehiculoEntradaSalida>();
+
+        for (VehiculoEntradaSalida v : this.historialAparcamientos) {
+            if(v.getVehiculo().getNumeroMatricula().equalsIgnoreCase(matricula)){
+                lista.add(v);
+            }
+        }
+        return  lista;
+    }
+
     public VehiculoEntradaSalida obtenerVehiculoIngresadoPorId(int id){
 
         VehiculoEntradaSalida vehiculo = null;

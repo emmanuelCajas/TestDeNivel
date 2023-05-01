@@ -1,4 +1,5 @@
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -31,15 +32,25 @@ public class Menu {
                     break;
                 }
                 case 4: {
-
+                    System.out.println("-----Aun no implementado-----");
                     break;
                 }
                 case 5: {
-
+                    System.out.println("-----Aun no esta implementado-----");
                     break;
                 }
                 case 6: {
+                    mostrarMovimientoPorfecha();
+                    break;
+                }
 
+                case 7: {
+                    mostrarMovimientoPorMes();
+                    break;
+                }
+
+                case 8: {
+                    mostrarMovimientoPorPropietario();
                     break;
                 }
 
@@ -70,8 +81,14 @@ public class Menu {
         String matricula=sc.nextLine();
         System.out.println("Ingrese nombre del propietario");
         String propietario=sc.nextLine();
-        System.out.println("Es residente TRUE/FALSE");
-        Boolean residente=Boolean.parseBoolean(sc.nextLine());
+        System.out.println("Es residente: Y/N");
+        String esResidente=sc.nextLine();
+        boolean residente=false;
+
+        if(esResidente.equalsIgnoreCase("Y")){
+            residente=true;
+        }
+
         System.out.println("tipo de vehiculo: L/M/N");
         String tipoVehiculo=sc.nextLine();
 
@@ -91,8 +108,10 @@ public class Menu {
 
         if(listaAbonados.getVehiculosRegistrados().contains(vehiculoObtenido)){
 
+            LocalDate fecha = LocalDate.now();
             LocalTime horaIngreso = LocalTime.now();
-            VehiculoEntradaSalida vehiculo = new VehiculoEntradaSalida(vehiculoObtenido,horaIngreso.toString());
+
+            VehiculoEntradaSalida vehiculo = new VehiculoEntradaSalida(vehiculoObtenido,fecha.toString(),horaIngreso.toString());
 
             listaAparcamientos.agregarVehiculoListaVehIngresados(vehiculo);
 
@@ -137,6 +156,10 @@ public class Menu {
                 horas = diferenciaEnHoras+1l;
             }
 
+            //obteniendo fecha
+
+            LocalDate fecha = LocalDate.now();
+
             //Obteniendo tipo de vehiculo
             String tipoVehiculo= listaAparcamientos.obtenerTipoVehiculoPorId(idVehiculo);
 
@@ -146,7 +169,7 @@ public class Menu {
 
             //obteniendo Vehiculo
             Vehiculo vehiculoObtenido = listaAbonados.obtenerVehiculoPorId(idVehiculo);
-            VehiculoEntradaSalida vehiculo = new VehiculoEntradaSalida(vehiculoObtenido,horaIngreso.toString()
+            VehiculoEntradaSalida vehiculo = new VehiculoEntradaSalida(vehiculoObtenido,fecha.toString(),horaIngreso.toString()
                     ,horaSalida.toString(),importeTarifa);
 
             listaAparcamientos.agregarVehiculoListaVehsalidos(vehiculo);
@@ -159,17 +182,54 @@ public class Menu {
             System.out.println("Vehiculos salidos:");
             listaAparcamientos.listarVehiculosSalidos();
             System.out.println("");
+
         }else{
             System.out.println("Vehiculo no ha sido ingresado ...");
         }
 
     }
 
+    public static void mostrarMovimientoPorfecha(){
+
+        System.out.println("Ingrese la fecha a consultar yyyy-mm-dd");
+        String fecha=sc.nextLine();
+
+        //obteniendo las fecahs que coinciden agregando a una lista
+        ArrayList<VehiculoEntradaSalida> vehiculosObtenidos = listaAparcamientos.obtenerVehiculoPorfecha(fecha);
+        //Imprimiendo la lista obtenida
+        vehiculosObtenidos.stream().forEach(System.out::println);
+
+    }
+
+    public static void mostrarMovimientoPorMes(){
+        System.out.println("Ingrese numero de mes a consultar");
+        int mes=Integer.parseInt(sc.nextLine());
+
+        System.out.println("Ingrese la matricula a consultar");
+        String numeroMatricula=sc.nextLine();
+
+        //obteniendo fecha por numero de matricula y agregando a una lista
+        ArrayList<VehiculoEntradaSalida> vehiculosObtenidos = listaAparcamientos.obtenerVehiculoPorMatricula(numeroMatricula);
+        //Imprimiendo la lista obtenida
+        vehiculosObtenidos.stream().forEach(System.out::println);
+
+    }
+
+    public static void mostrarMovimientoPorPropietario(){
+
+        System.out.println("Ingrese nombre de propietario a consultar");
+        String propietario=sc.nextLine();
+
+        //obteniendo fecha por numero de matricula y agregando a una lista
+        ArrayList<VehiculoEntradaSalida> vehiculosObtenidos = listaAparcamientos.obtenerVehiculoPorPropietario(propietario);
+        //Imprimiendo la lista obtenida
+        vehiculosObtenidos.stream().forEach(System.out::println);
+
+    }
+
     public static void listarVehiculosAbonados(){
         listaAbonados.listarVehiculosRegistrados();
     }
-
-
 
     public static double calcularImporteTarifa(String tipovehiculo, long horas, boolean esResidente){
 

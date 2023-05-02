@@ -106,7 +106,8 @@ public class Menu {
 
         Vehiculo vehiculoObtenido = listaAbonados.obtenerVehiculoPorId(idVehiculo);
 
-        if(listaAbonados.getVehiculosRegistrados().contains(vehiculoObtenido)){
+        if(listaAbonados.getVehiculosRegistrados().contains(vehiculoObtenido) &&
+                !listaAparcamientos.getListaVehiculosIngresados().contains(listaAparcamientos.obtenerVehiculoIngresadoPorId(idVehiculo))){
 
             LocalDate fecha = LocalDate.now();
             LocalTime horaIngreso = LocalTime.now();

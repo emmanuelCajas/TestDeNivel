@@ -36,7 +36,7 @@ public class Menu {
                     break;
                 }
                 case 5: {
-                    System.out.println("-----Aun no esta implementado-----");
+                    mostrarUltimoMovimiento();
                     break;
                 }
                 case 6: {
@@ -225,6 +225,21 @@ public class Menu {
         ArrayList<VehiculoEntradaSalida> vehiculosObtenidos = listaAparcamientos.obtenerVehiculoPorPropietario(propietario);
         //Imprimiendo la lista obtenida
         vehiculosObtenidos.stream().forEach(System.out::println);
+
+    }
+
+    public static void mostrarUltimoMovimiento(){
+
+        System.out.println("Ingrese matricula a consultar");
+        String matricula=sc.nextLine();
+
+        //obteniendo ultimo registro de la lista por matricula
+        ArrayList<VehiculoEntradaSalida> vehiculosObtenidos = listaAparcamientos.obtenerVehiculoPorMatricula(matricula);
+        //Guardando en una variable
+        VehiculoEntradaSalida vehiculoObtenido = vehiculosObtenidos.get(vehiculosObtenidos.size()-1);
+        System.out.println("Ultimo registro de vehiculo: " + vehiculoObtenido.getVehiculo().getNumeroMatricula());
+        System.out.println(vehiculoObtenido);
+
 
     }
 

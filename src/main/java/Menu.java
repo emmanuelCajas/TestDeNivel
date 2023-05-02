@@ -194,7 +194,7 @@ public class Menu {
         System.out.println("Ingrese la fecha a consultar yyyy-mm-dd");
         String fecha=sc.nextLine();
 
-        //obteniendo las fecahs que coinciden agregando a una lista
+        //obteniendo las fechas que coinciden agregando a una lista
         ArrayList<VehiculoEntradaSalida> vehiculosObtenidos = listaAparcamientos.obtenerVehiculoPorfecha(fecha);
         //Imprimiendo la lista obtenida
         vehiculosObtenidos.stream().forEach(System.out::println);
